@@ -1,17 +1,12 @@
 {
-  "manifest_version": 3,
-  "name": "Cookie Detector",
-  "description": "This extension displays all cookies",
-  "version": "1.0",
-  "action": {
-    "default_icon": "icon.png",
-    "default_popup": "window.html"
-  },
-  "host_permissions": [
-    "<all_urls>"
-  ],
-  "permissions": [
-    "cookies"
-  ]
+    "manifest_version": 3,
+    "name": "Cookie Detector",
+    "description": "This extension displays all cookies",
+    "version": "1.0",
+    "action": {
+        "default_icon": "icon.png",
+        "default_popup": "window.html"
+    },
+    "host_permissions": ["<all_urls>"],
+    "permissions": ["cookies", "tabs"]
 }
-
