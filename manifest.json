@@ -8,5 +8,11 @@
         "default_popup": "window.html"
     },
     "host_permissions": ["<all_urls>"],
-    "permissions": ["cookies", "tabs"]
+    "permissions": ["cookies", "tabs", "<all_urls>", "http://*/*", "https://*/*"],
+    "content_scripts": [
+        {
+          "matches": ["http://*/*", "https://*/*"],
+          "js": ["background.js"]
+        }
+      ]
 }
