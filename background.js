@@ -12,39 +12,44 @@ async function getCurrentTab(e) {
 
 async function getCookies(e) {
     e.preventDefault();
-    const currentTab = await getCurrentTab();
-    console.log(currentTab.url);
-    // getting cookies pertinent to the current tab
-    let currentTabCookies = await chrome.cookies.getAll({
-        url: currentTab.url,
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.cookies.getAll({}, function(cookies) {
+            console.log(cookies);
+        });
     });
-    // all cookies
-    let allCookies = await chrome.cookies.getAll({});
-    // cookies = new Set([...cookies]);
-    const thirdPartyCookies = await processCookies(allCookies, currentTabCookies);
-    console.log();
+    // const currentTab = await getCurrentTab();
+    // console.log(currentTab.url);
+    // // getting cookies pertinent to the current tab
+    // let currentTabCookies = await chrome.cookies.getAll({
+    //     url: currentTab.url,
+    // });
+    // // all cookies
+    // let allCookies = await chrome.cookies.getAll({});
+    // // cookies = new Set([...cookies]);
+    // const thirdPartyCookies = await processCookies(allCookies, currentTabCookies);
+    // console.log();
 
-    cookies.forEach(function(cookie) {
-        if (!cookie.domain.startsWith(".")) {
-            // check if the cookie is a third-party cookie
-            // console.log(
-            //     "domain: ",
-            //     cookie.domain,
-            //     "\n",
-            //     "name: ",
-            //     cookie.name,
-            //     "\n",
-            //     "value: ",
-            //     cookie.value
-            // );
-            let li = document.createElement("li");
-            li.innerHTML = `domain: ${cookie.domain}\nname: ${cookie.name}`;
-            // li.innerHTML = `${cookie}`
-            cookiesList.appendChild(li);
-            //   `<li>domain: ${cookie.domain}\nname: ${cookie.name}</li>`;
-            //   cookiesList.children.push(li);
-        }
-    });
+    // cookies.forEach(function(cookie) {
+    //     if (!cookie.domain.startsWith(".")) {
+    //         // check if the cookie is a third-party cookie
+    //         // console.log(
+    //         //     "domain: ",
+    //         //     cookie.domain,
+    //         //     "\n",
+    //         //     "name: ",
+    //         //     cookie.name,
+    //         //     "\n",
+    //         //     "value: ",
+    //         //     cookie.value
+    //         // );
+    //         let li = document.createElement("li");
+    //         li.innerHTML = `domain: ${cookie.domain}\nname: ${cookie.name}`;
+    //         // li.innerHTML = `${cookie}`
+    //         cookiesList.appendChild(li);
+    //         //   `<li>domain: ${cookie.domain}\nname: ${cookie.name}</li>`;
+    //         //   cookiesList.children.push(li);
+    //     }
+    // });
 }
 
 async function processCookies(allCookies, currentTabCookies) {
