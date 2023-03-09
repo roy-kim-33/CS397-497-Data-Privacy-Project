@@ -41,8 +41,7 @@ async function getCookies(e) {
             //     cookie.value
             // );
             let li = document.createElement("li");
-            li.innerHTML = `domain: ${cookie.domain}\nname: ${cookie.name}`;
-            // li.innerHTML = `${cookie}`
+            li.innerHTML = `domain: ${cookie.domain}`;
             cookiesList.appendChild(li);
             //   `<li>domain: ${cookie.domain}\nname: ${cookie.name}</li>`;
             //   cookiesList.children.push(li);
@@ -58,17 +57,17 @@ async function processCookies(allCookies, currentTabCookies) {
 }
 
 
-test = async () => {
+test = async() => {
     let all_windows = await chrome.windows.getAll({ populate: true });
     let first_party_cookies = [];
     for (let window of all_windows) {
         // let tabs = await window.tabs;
         for (let tab of window.tabs) {
-            let tab_first_party_cookies = await chrome.cookies.getAll({url: tab.url});
+            let tab_first_party_cookies = await chrome.cookies.getAll({ url: tab.url });
             first_party_cookies = first_party_cookies.concat(tab_first_party_cookies);
         };
     };
-    
+
     let all_cookies = await chrome.cookies.getAll({});
 
     all_cookies = all_cookies;
@@ -83,18 +82,22 @@ test = async () => {
     console.log(third_party_cookies.filter(cookie => !cookie.domain.startsWith('.')));
 
     third_party_cookies.filter(cookie => !cookie.domain.startsWith('.')).forEach(function(cookie) {
-        // console.log(
-        //     "domain: ",
-        //     cookie.domain,
-        //     "\n",
-        //     "name: ",
-        //     cookie.name,
-        //     "\n",
-        //     "value: ",
-        //     cookie.value
-        // );
+        console.log(
+            "domain: ",
+            cookie.domain,
+            "\n",
+            "name: ",
+            cookie.name,
+            "\n",
+            "value: ",
+            cookie.value
+        );
         let li = document.createElement("li");
-        li.innerHTML = `domain: ${cookie.domain}\nname: ${cookie.name}`;
+        li.innerHTML = `<b>domain:</b> ${cookie.domain}`;
+        li.innerHTML += '<br>';
+        li.innerHTML += `<b>name:</b> ${cookie.name}\n`;
+        // li.innerHTML += '<br>';
+        // li.innerHTML += '<br>';
         // // li.innerHTML = `${cookie}`
         cookiesList.appendChild(li);
         //   `<li>domain: ${cookie.domain}\nname: ${cookie.name}</li>`;
