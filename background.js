@@ -82,6 +82,15 @@ test = async () => {
     console.log(third_party_cookies);
     console.log(third_party_cookies.filter(cookie => !cookie.domain.startsWith('.')));
 
+    let domain_count = new Map;
+    for (cookie of third_party_cookies.filter(cookie => !cookie.domain.startsWith('.'))) {
+        if (domain_count.has(cookie.domain)) {
+            domain_count.set(cookie.domain, domain_count.get(cookie.domain) + 1);
+        } else {
+            domain_count.set(cookie.domain, 1);
+        }
+    }
+    console.log(domain_count);
     third_party_cookies.filter(cookie => !cookie.domain.startsWith('.')).forEach(function(cookie) {
         // console.log(
         //     "domain: ",
