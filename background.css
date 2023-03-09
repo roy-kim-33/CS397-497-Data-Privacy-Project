@@ -1,6 +1,8 @@
 .header > * {
-    margin-left: 10px;
+    /* margin-left: 10px; */
+    text-align: center;
 }
+
 #cookies > * {
     list-style-type: none;
     margin-left: -30px;
@@ -9,4 +11,38 @@
     border-width: 1px;
     margin-bottom: 5px;
     padding: 5px;
+}
+
+.table-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.table-cell-1 {
+    width: 60%;
+    flex-grow: 1;
+    padding: 2px;
+    margin: 0 2px;
+    /* border: 1px solid black; */
+    justify-content: center;
+    text-align: center;
+}
+.table-cell-2 {
+    width: 20%;
+    flex-grow: 1;
+    padding: 2px;
+    margin: 0 2px;
+    /* border: 1px solid black; */
+    justify-content: center;
+    text-align: center;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
 }

@@ -1,19 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+    <head>
+        <script src="background.js" defer></script>
+        <link rel="stylesheet" href="background.css" />
+    </head>
 
-<head>
-    <script src="background.js" defer></script>
-    <link rel="stylesheet" href="background.css">
-</head>
-
-<body>
-    <div class="header">
-        <h1>Here's a list of third-party cookies!</h1>
-    </div>
-    <div class="content">
-        <ul id="cookies">
-        </ul>
-    </div>
-</body>
-
+    <body>
+        <div class="header">
+            <h1>Here's a list of third-party cookies!</h1>
+        </div>
+        <div class="table-container" id="cookies-table">
+            <div class="table-cell-1"><b>Domains</b></div>
+            <div class="table-cell-2"><b>Count</b></div>
+        </div>
+        <div class="content">
+            <ul id="cookies"></ul>
+        </div>
+    </body>
 </html>
