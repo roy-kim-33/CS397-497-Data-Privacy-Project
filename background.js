@@ -90,28 +90,23 @@ test = async() => {
         }
     }
     console.log(domain_count);
-    third_party_cookies.filter(cookie => !cookie.domain.startsWith('.')).forEach(function(cookie) {
+    for (let kv of domain_count.entries()) { // (domain, count)
         console.log(
-            "domain: ",
-            cookie.domain,
+            kv[0], // domain
             "\n",
-            "name: ",
-            cookie.name,
-            "\n",
-            "value: ",
-            cookie.value
+            kv[1] // count
         );
         let li = document.createElement("li");
-        li.innerHTML = `<b>domain:</b> ${cookie.domain}`;
+        li.innerHTML = `<b class=domain>${kv[0]}</b>`;
         li.innerHTML += '<br>';
-        li.innerHTML += `<b>name:</b> ${cookie.name}\n`;
+        li.innerHTML += `<b class=count>${kv[1]}\n</b>`;
         // li.innerHTML += '<br>';
         // li.innerHTML += '<br>';
         // // li.innerHTML = `${cookie}`
         cookiesList.appendChild(li);
         //   `<li>domain: ${cookie.domain}\nname: ${cookie.name}</li>`;
         //   cookiesList.children.push(li);
-    });
+    };
 }
 test();
 
